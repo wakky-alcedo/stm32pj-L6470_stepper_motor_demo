@@ -1,4 +1,5 @@
 #include "wrapper.hpp"
+#include "l6470duino.h"
 
 /* Pre-Processor Begin */
 

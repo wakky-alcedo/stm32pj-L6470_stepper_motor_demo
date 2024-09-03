@@ -1,0 +1,3 @@
+[submodule "stm32lib-L6470"]
+	path = stm32lib-L6470
+	url = https://github.com/wakky-alcedo/stm32lib-L6470.git

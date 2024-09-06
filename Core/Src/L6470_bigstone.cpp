@@ -42,7 +42,9 @@ L6470::L6470(SPI_HandleTypeDef& hspi, GPIO_pin cs_pin):
 
 //--- basic functions ---//
 void L6470::begin(){
-    HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_SET);
+	if (rst_pin.GPIOx != 0x00) {
+		HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_SET);
+	}
     HAL_GPIO_WritePin(cs_pin.GPIOx, cs_pin.GPIO_Pin, GPIO_PIN_SET);
 
     setSPImode();
@@ -77,9 +79,10 @@ inline uint8_t L6470::xfer(uint8_t send){
     uint8_t buf = 0;
 
     setSPImode();
-
+//    while(!HAL_GPIO_ReadPin(busy_pin.GPIOx, busy_pin.GPIO_Pin)){} //BESYが解除されるまで待機
     HAL_GPIO_WritePin(cs_pin.GPIOx, cs_pin.GPIO_Pin, GPIO_PIN_RESET);
-	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&send, (uint8_t*)&buf, sizeof(send), 1000);
+//	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&send, (uint8_t*)&buf, sizeof(send), 1000);
+	HAL_SPI_Transmit(hspi,(uint8_t*)&send, sizeof(send), 1000);
     HAL_GPIO_WritePin(cs_pin.GPIOx, cs_pin.GPIO_Pin, GPIO_PIN_SET);
 //    delayMicroseconds(1);
     return buf;
@@ -278,9 +281,11 @@ void L6470::SetStepClock(uint8_t dir){
 }
 
 void L6470::HardReset(){
-    HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_RESET);
-    HAL_Delay(500);
-    HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_SET);
+	if (rst_pin.GPIOx != 0x00) {
+	    HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_RESET);
+	    HAL_Delay(500);
+	    HAL_GPIO_WritePin(rst_pin.GPIOx, rst_pin.GPIO_Pin, GPIO_PIN_SET);
+	}
 }
 
 void L6470::SoftReset(){

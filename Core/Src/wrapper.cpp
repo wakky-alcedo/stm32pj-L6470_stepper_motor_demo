@@ -66,12 +66,12 @@ void init(void){
 	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_DEC,1,0xf50);
 	l6470_driver.SetParam(l6470::Addres::ADR_STEP_MODE,1,0x07);
 
-//	l6470_driver.run(0x030000,CW);
+//	l6470_driver.run(0x030000,l6470::Direction::CW);
 
 	l6470_driver.GoTo(5000);
 	HAL_Delay(5000);
 
-	l6470_driver.run(1000, false);
+	l6470_driver.run(1000, l6470::Direction::CCW);
 	HAL_Delay(1000);
 
 	l6470_driver.SoftStop();

@@ -1,4 +1,4 @@
-#include <l6470.h>
+#include <l6470.hpp>
 #include "wrapper.hpp"
 #include "gpio.h"
 #include "spi.h"
@@ -55,18 +55,29 @@ void init(void){
 
 	l6470_driver.SoftReset();
 
-	l6470_driver.SetParam(ADR_ACC,2,0x40);
-	l6470_driver.SetParam(ADR_DEC,2,0x40);
-	l6470_driver.SetParam(ADR_MAX_SPEED,2,0x030);
-	l6470_driver.SetParam(ADR_MIN_SPEED,2,0x00);
-	l6470_driver.SetParam(ADR_FS_SPD,2,0x3ff);
-	l6470_driver.SetParam(ADR_KVAL_HOLD,1,0x50);
-	l6470_driver.SetParam(ADR_KVAL_RUN,1,0x50);
-	l6470_driver.SetParam(ADR_KVAL_ACC,1,0x50);
-	l6470_driver.SetParam(ADR_KVAL_DEC,1,0xf50);
-	l6470_driver.SetParam(ADR_STEP_MODE,1,0x07);
+	l6470_driver.SetParam(l6470::Addres::ADR_ACC,2,0x40);
+	l6470_driver.SetParam(l6470::Addres::ADR_DEC,2,0x40);
+	l6470_driver.SetParam(l6470::Addres::ADR_MAX_SPEED,2,0x030);
+	l6470_driver.SetParam(l6470::Addres::ADR_MIN_SPEED,2,0x00);
+	l6470_driver.SetParam(l6470::Addres::ADR_FS_SPD,2,0x3ff);
+	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_HOLD,1,0x50);
+	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_RUN,1,0x50);
+	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_ACC,1,0x50);
+	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_DEC,1,0xf50);
+	l6470_driver.SetParam(l6470::Addres::ADR_STEP_MODE,1,0x07);
 
-	l6470_driver.run(0x030000,CW);
+//	l6470_driver.run(0x030000,CW);
+
+	l6470_driver.GoTo(5000);
+	HAL_Delay(5000);
+
+	l6470_driver.run(1000, false);
+	HAL_Delay(1000);
+
+	l6470_driver.SoftStop();
+	HAL_Delay(1000);
+
+	l6470_driver.GoTo(0);
 }
 
 void loop(void){

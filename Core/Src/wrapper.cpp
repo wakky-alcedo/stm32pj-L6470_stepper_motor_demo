@@ -51,33 +51,33 @@ void init(void){
 //	l6470_driver.Goto(0);
 	// bigstone
 	l6470_driver.begin();
-	l6470_driver.SetHoldKVAL(0xff);
+	l6470_driver.set_hold_kval(0xff);
 
-	l6470_driver.SoftReset();
+	l6470_driver.soft_reset();
 
-	l6470_driver.SetParam(l6470::Addres::ADR_ACC,2,0x40);
-	l6470_driver.SetParam(l6470::Addres::ADR_DEC,2,0x40);
-	l6470_driver.SetParam(l6470::Addres::ADR_MAX_SPEED,2,0x030);
-	l6470_driver.SetParam(l6470::Addres::ADR_MIN_SPEED,2,0x00);
-	l6470_driver.SetParam(l6470::Addres::ADR_FS_SPD,2,0x3ff);
-	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_HOLD,1,0x50);
-	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_RUN,1,0x50);
-	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_ACC,1,0x50);
-	l6470_driver.SetParam(l6470::Addres::ADR_KVAL_DEC,1,0xf50);
-	l6470_driver.SetParam(l6470::Addres::ADR_STEP_MODE,1,0x07);
+	l6470_driver.set_param(l6470::Addres::ADR_ACC,2,0x40);
+	l6470_driver.set_param(l6470::Addres::ADR_DEC,2,0x40);
+	l6470_driver.set_param(l6470::Addres::ADR_MAX_SPEED,2,0x030);
+	l6470_driver.set_param(l6470::Addres::ADR_MIN_SPEED,2,0x00);
+	l6470_driver.set_param(l6470::Addres::ADR_FS_SPD,2,0x3ff);
+	l6470_driver.set_param(l6470::Addres::ADR_KVAL_HOLD,1,0x50);
+	l6470_driver.set_param(l6470::Addres::ADR_KVAL_RUN,1,0x50);
+	l6470_driver.set_param(l6470::Addres::ADR_KVAL_ACC,1,0x50);
+	l6470_driver.set_param(l6470::Addres::ADR_KVAL_DEC,1,0xf50);
+	l6470_driver.set_param(l6470::Addres::ADR_STEP_MODE,1,0x07);
 
 //	l6470_driver.run(0x030000,l6470::Direction::CW);
 
-	l6470_driver.GoTo(5000);
+	l6470_driver.go_to(5000);
 	HAL_Delay(5000);
 
 	l6470_driver.run(1000, l6470::Direction::CCW);
 	HAL_Delay(1000);
 
-	l6470_driver.SoftStop();
+	l6470_driver.soft_stop();
 	HAL_Delay(1000);
 
-	l6470_driver.GoTo(0);
+	l6470_driver.go_to(0);
 }
 
 void loop(void){

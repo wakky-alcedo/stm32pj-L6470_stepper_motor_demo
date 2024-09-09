@@ -16,7 +16,7 @@
 
 /* Variable Begin */
 //l6470::L6470 l6470_driver(hspi1,{SPI1_CS_GPIO_Port,SPI1_CS_Pin},{L6470_BUSY_GPIO_Port,L6470_BUSY_Pin},1000);
-l6470::L6470 l6470_driver(hspi1,{SPI1_CS_GPIO_Port,SPI1_CS_Pin});
+l6470::L6470 l6470_driver(hspi1,{SPI1_CS_GPIO_Port,SPI1_CS_Pin}, 0xf);
 /* Variable End */
 
 void init(void){
@@ -50,8 +50,8 @@ void init(void){
 //
 //	l6470_driver.Goto(0);
 	// bigstone
-	l6470_driver.begin();
-	l6470_driver.set_hold_kval(0xff);
+	l6470_driver.init();
+	l6470_driver.set_kval_hold(0xff);
 
 	l6470_driver.soft_reset();
 
@@ -69,7 +69,7 @@ void init(void){
 //	l6470_driver.run(0x030000,l6470::Direction::CW);
 
 	l6470_driver.go_to(5000);
-	HAL_Delay(5000);
+	HAL_Delay(1000);
 
 	l6470_driver.run(1000, l6470::Direction::CCW);
 	HAL_Delay(1000);

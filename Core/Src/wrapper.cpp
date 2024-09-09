@@ -55,16 +55,16 @@ void init(void){
 
 	l6470_driver.soft_reset();
 
-	l6470_driver.set_param(l6470::Address::ADR_ACC,0x40);
-	l6470_driver.set_param(l6470::Address::ADR_DEC,0x40);
-	l6470_driver.set_param(l6470::Address::ADR_MAX_SPEED,0x030);
-	l6470_driver.set_param(l6470::Address::ADR_MIN_SPEED,0x00);
-	l6470_driver.set_param(l6470::Address::ADR_FS_SPD,0x3ff);
-	l6470_driver.set_param(l6470::Address::ADR_KVAL_HOLD,0x50);
-	l6470_driver.set_param(l6470::Address::ADR_KVAL_RUN,0x50);
-	l6470_driver.set_param(l6470::Address::ADR_KVAL_ACC,0x50);
-	l6470_driver.set_param(l6470::Address::ADR_KVAL_DEC,0xf50);
-	l6470_driver.set_param(l6470::Address::ADR_STEP_MODE,0x07);
+	l6470_driver.set_param(l6470::Address::ADR_ACC,2,0x40);
+	l6470_driver.set_param(l6470::Address::ADR_DEC,2,0x40);
+	l6470_driver.set_param(l6470::Address::ADR_MAX_SPEED,2,0x030);
+	l6470_driver.set_param(l6470::Address::ADR_MIN_SPEED,2,0x00);
+	l6470_driver.set_param(l6470::Address::ADR_FS_SPD,2,0x3ff);
+	l6470_driver.set_param(l6470::Address::ADR_KVAL_HOLD,1,0x50);
+	l6470_driver.set_param(l6470::Address::ADR_KVAL_RUN,1,0x50);
+	l6470_driver.set_param(l6470::Address::ADR_KVAL_ACC,1,0x50);
+	l6470_driver.set_param(l6470::Address::ADR_KVAL_DEC,1,0xf50);
+	l6470_driver.set_param(l6470::Address::ADR_STEP_MODE,1,0x07);
 
 //	l6470_driver.run(0x030000,l6470::Direction::CW);
 

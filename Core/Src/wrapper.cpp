@@ -15,41 +15,10 @@
 /* Function Prototype End */
 
 /* Variable Begin */
-//l6470::L6470 l6470_driver(hspi1,{SPI1_CS_GPIO_Port,SPI1_CS_Pin},{L6470_BUSY_GPIO_Port,L6470_BUSY_Pin},1000);
 l6470::L6470 l6470_driver(hspi1,{SPI1_CS_GPIO_Port,SPI1_CS_Pin}, 0xf);
 /* Variable End */
 
 void init(void){
-	// driver
-//	HAL_SPI_DeInit(&hspi1);
-//	HAL_SPI_Init(&hspi1);
-//
-//
-//	HAL_Delay(10);
-//
-//	l6470_driver.init(1);
-//	HAL_Delay(1);
-//	l6470_driver.voltage_acc (0xDF);
-//	HAL_Delay(1);
-//	l6470_driver.voltage_dec (0xDF);
-//	HAL_Delay(1);
-//	l6470_driver.voltage_run (0xDF);
-//	HAL_Delay(1);
-//	l6470_driver.voltage_hold(0x30);
-//
-//	HAL_Delay(1000);
-//
-//	l6470_driver.Goto(5000);
-//	HAL_Delay(5000);
-//
-//	l6470_driver.Run(1000, false);
-//	HAL_Delay(1000);
-//
-//	l6470_driver.SoftStop();
-//	HAL_Delay(1000);
-//
-//	l6470_driver.Goto(0);
-	// bigstone
 	l6470_driver.init();
 	l6470_driver.set_kval_hold(0xff);
 
